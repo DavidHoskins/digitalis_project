@@ -1,0 +1,18 @@
+# Running project
+Running the project requires 2 steps for the backend to work correctly
+
+## run celery:
+This needs to be run for scheduled tasks, advised that this should be run first.
+celery -A rest_api worker --loglevel=INFO
+
+## run django:
+This needs to be run to deploy the backend restful endpoints
+python manage.py runserver
+
+## sample curl request:
+If you'd like to test the endpoints without using a browser this is an example request
+curl -H 'Content-Type: application/json' -d '{"from_floor": 2, "to_floor": 4}' -X POST localhost:8000/api/lift/request/
+
+# run testing:
+Running testing is pretty straight forwards, just run this command below and confirm all is working as intended
+python manage.py test
